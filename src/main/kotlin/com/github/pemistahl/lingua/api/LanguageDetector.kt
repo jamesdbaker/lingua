@@ -224,8 +224,9 @@ class LanguageDetector internal constructor(
             }
         }
 
-        val languagesWithMinimumRequiredCharCountExist = languageCharCounts.size == 1 || languageCharCounts
-            .asSequence()
+        val languagesWithMinimumRequiredCharCountExist =
+            (words.size == 1 && languageCharCounts.size == 1) ||
+            languageCharCounts.asSequence()
             .filter { it.value >= minimalRequiredCharCount }
             .count() > 0
 
